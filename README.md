@@ -50,3 +50,6 @@ EnterpriseWorkspaceAI/
 ├── credentials.yml        # Channel credentials
 ├── domain.yml            # Bot domain
 ├── endpoints.yml         # Endpoint configuration
+# 💬 Sample Conversations
+## 1. Basic Room Booking 🎯
+![image](https://github.com/user-attachments/assets/ad2bcd46-758a-4db5-a6fb-842824c282c0)
