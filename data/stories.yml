@@ -1,0 +1,65 @@
+version: "3.1"
+
+stories:
+
+- story: Thank and goodbye
+  steps:
+  - intent: thank_you
+  - action: utter_goodbye
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: Affirm booking
+  steps:
+  - intent: book_room
+  - action: room_booking_form
+  - active_loop: room_booking_form
+  - intent: affirm
+  - action: action_book_room
+  - action: utter_booking_confirmed
+
+- story: Deny booking
+  steps:
+  - intent: book_room
+  - action: room_booking_form
+  - active_loop: room_booking_form
+  - intent: deny
+  - action: utter_booking_cancelled
+  - action: action_reset_booking_slots
+
+
+- story: Check availability then book
+  steps:
+    - intent: check_room_availability
+      entities:
+       - date: "2024-01-25"
+    - action: action_check_room_availability
+    - action: room_booking_form
+    - active_loop: room_booking_form
+    - active_loop: null
+    - action: action_book_room
+    - action: utter_booking_confirmed
+
+- story: Book room with multiple corrections
+  steps:
+    - intent: book_room
+    - action: room_booking_form
+    - active_loop: room_booking_form
+    - slot_was_set:
+      - requested_slot: date
+    - intent: provide_booking_details
+      entities:
+      - date: "invalid_date"
+    - action: utter_invalid_date_format
+    - action: utter_ask_date
+    - intent: provide_booking_details
+      entities:
+      - date: "2024-01-25"
+    - slot_was_set:
+      - requested_slot: time
+    - intent: provide_booking_details
+      entities:
+      - time: "14:00"
+    - active_loop: null
+    - action: action_book_room
+    - action: utter_booking_confirmed

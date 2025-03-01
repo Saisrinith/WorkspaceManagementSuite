@@ -1,0 +1,141 @@
+version: '3.1'
+
+intents:
+- greet
+- goodbye
+- thank_you
+- affirm
+- deny
+- book_room
+- check_room_availability
+- provide_booking_details
+
+entities:
+- room_name
+- date
+- time
+- duration
+- person_name
+- contact_number
+- number_of_people
+
+slots:
+  room_name:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: room_name
+
+  date:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: date
+
+  time:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: time
+
+  duration:
+    type: float
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: duration
+
+  number_of_people:
+    type: float
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: number_of_people
+
+  person_name:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: person_name
+
+  contact_number:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: contact_number
+
+responses:
+  utter_greet:
+    - text: "Hello! Would you like to book a room or check availability?"
+
+  utter_book:
+    - text: "Hello! Would you like to book a room?"
+  utter_goodbye:
+    - text: "Goodbye! Thank you for using our booking service."
+
+  utter_ask_room_name:
+    - text: "Which room would you like to book?"
+    - text: "Please specify the room name."
+
+  utter_ask_date:
+    - text: "For which date? (Format: YYYY-MM-DD)"
+
+  utter_ask_time:
+    - text: "What time would you like to book? (Format: HH:MM)"
+
+  utter_ask_duration:
+    - text: "How many hours do you need the room for?"
+
+  utter_ask_number_of_people:
+    - text: "How many people will be using the room?"
+
+  utter_ask_person_name:
+    - text: "What name should I put for the booking?"
+
+  utter_ask_contact_number:
+    - text: "Please provide your contact number."
+
+  utter_booking_confirmed:
+    - text: "Perfect! I've booked {room_name} for {date} at {time} for {duration} hours."
+
+  utter_booking_failed:
+    - text: "Sorry, I couldn't complete the booking. The room might be unavailable."
+
+  utter_show_available_rooms:
+    - text: "Here are the available rooms:{available_rooms}"
+
+  utter_booking_cancelled:
+    - text: "I've cancelled your booking request. Is there anything else I can help you with?"
+
+  utter_invalid_date_format:
+    - text: "Sorry, that's not a valid date format. Please use YYYY-MM-DD (e.g., 2024-01-25)"
+
+  utter_invalid_time_format:
+    - text: "Sorry, that's not a valid time format. Please use HH:MM (e.g., 14:30)"
+
+forms:
+  room_booking_form:
+    required_slots:
+      - room_name
+      - date
+      - time
+      - duration
+      - person_name
+      - contact_number
+      - number_of_people
+
+actions:
+  - action_check_room_availability
+  - action_book_room
+  - action_reset_booking_slots
+  - validate_room_booking_form
+  - utter_show_available_rooms
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

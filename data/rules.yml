@@ -1,0 +1,32 @@
+version: "3.1"
+
+rules:
+- rule: Respond to greeting
+  steps:
+    - intent: greet
+    - action: utter_greet
+
+- rule: Activate room booking form
+  steps:
+    - intent: book_room
+    - action: room_booking_form
+    - active_loop: room_booking_form
+
+- rule: Submit room booking form
+  condition:
+    - active_loop: room_booking_form
+  steps:
+    - action: room_booking_form
+    - active_loop: null
+    - slot_was_set:
+      - requested_slot: null
+    - action: action_book_room
+    - action: utter_booking_confirmed
+
+- rule: Check room availability
+  steps:
+    - intent: check_room_availability
+    - action: action_check_room_availability
+    - action: room_booking_form
+    - active_loop: room_booking_form
+    - active_loop: room_booking_form

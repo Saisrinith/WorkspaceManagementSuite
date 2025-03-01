@@ -1,0 +1,199 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - hi there
+    - greetings
+    - hey there
+    - let's start
+    - hi, I need a room
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+    - thanks, bye
+    - okay bye
+    - bye for now
+
+- intent: book_room
+  examples: |
+    - I want to book a room
+    - I need to reserve a room
+    - book a meeting room
+    - make a room reservation
+    - schedule a room
+    - place a room booking
+    - create a room booking
+    - set up a room reservation
+    - book [Conference Room A](room_name) please
+    - I want to reserve [Meeting Room 1](room_name)
+    - need to book [Board Room](room_name)
+    - let me book [Training Room](room_name)
+    - reserve [Executive Suite](room_name)
+    - I'd like to book [Innovation Lab](room_name)
+    - book a room for [tomorrow](date) at [2pm](time)
+    - reserve room for [2024-01-25](date) [14:00](time)
+    - need to book for [next Monday](date) [morning](time)
+    - make reservation for [today](date) at [3pm](time)
+    - book [Conference Room](room_name) for [2024-01-25](date) at [10:00](time)
+    - book for [2](duration) hours
+    - need room for [3](duration) hour meeting
+    - reserve space for [1.5](duration) hours
+    - book [Board Room](room_name) for [4](duration) hours
+    - need booking for [half](duration) hour
+    - book room for [5](number_of_people) people
+    - need space for [10](number_of_people) persons
+    - reserve room for team of [15](number_of_people)
+    - book space for [20](number_of_people) participants
+    - need room that fits [8](number_of_people) people
+    - book [Conference Room A](room_name) for [tomorrow](date) at [2pm](time) for [5](number_of_people) people
+    - reserve [Meeting Room 1](room_name) for [2](duration) hours on [2024-01-25](date)
+    - need to book [Board Room](room_name) for [10](number_of_people) people at [14:00](time)
+    - make reservation for [3](duration) hours starting [09:00](time)
+    - book room for team meeting of [8](number_of_people) for [2](duration) hours
+
+- intent: check_room_availability
+  examples: |
+    - are any rooms available
+    - check room availability
+    - which rooms are free
+    - show available rooms
+    - what rooms can I book
+    - list free rooms
+    - display available spaces
+    - show me vacant rooms
+    - what's available [tomorrow](date)
+    - show free rooms for [2024-01-25](date)
+    - check availability for [next week](date)
+    - what rooms are free at [2pm](time)
+    - any rooms available [this afternoon](time)
+    - check free slots for [morning](time)
+    - what's available at [15:00](time)
+    - is [Conference Room A](room_name) free
+    - check if [Board Room](room_name) is available
+    - when is [Meeting Room 1](room_name) free
+    - show availability for [Training Room](room_name)
+    - is [Executive Suite](room_name) booked
+    - check [Innovation Lab](room_name) schedule
+    - any rooms free for [5](number_of_people) people
+    - show spaces that fit [10](number_of_people) persons
+    - check rooms for [15](number_of_people) people
+    - what's available for [20](number_of_people) participants
+    - rooms that can hold [8](number_of_people) people
+    - what's free for [2](duration) hours
+    - show rooms available for [3](duration) hour meeting
+    - check availability for [1.5](duration) hour slot
+    - any rooms free for [half](duration) hour
+    - spaces available for [4](duration) hour booking
+    - show rooms available [tomorrow](date) for [5](number_of_people) people
+    - check availability for [2](duration) hours on [2024-01-25](date)
+    - any rooms free at [14:00](time) for [10](number_of_people) people
+    - what's available for [3](duration) hours starting [09:00](time)
+    - check spaces for [8](number_of_people) people [next week](date)
+
+- intent: provide_booking_details
+  examples: |
+    - my name is [John Smith](person_name)
+    - [Sarah Johnson](person_name)
+    - contact number is [9876543210](contact_number)
+    - phone [1234567890](contact_number)
+    - we need it for [3](duration) hours
+    - for [2024-01-25](date)
+    - starting at [10:30](time)
+    - [Conference Room A](room_name)
+    - [Meeting Room 1](room_name) please
+    - [Board Room](room_name)
+    - for [5](number_of_people) people
+    - team of [10](number_of_people)
+    - my number is [9876543210](contact_number)
+    - call me at [1234567890](contact_number)
+    - I'm [Peter](person_name)
+    - the name's [Mike](person_name)
+
+- intent: affirm
+  examples: |
+    - yes
+    - indeed
+    - correct
+    - that's right
+    - yeah
+    - ok
+    - sounds good
+    - that works
+    - perfect
+    - great
+    - sure
+    - I agree
+    - that's correct
+
+- intent: deny
+  examples: |
+    - no
+    - never
+    - not at all
+    - incorrect
+    - that's wrong
+    - no way
+    - not really
+    - I don't think so
+    - nope
+    - wrong
+    - that's not right
+    - disagree
+
+- regex: contact_number
+  examples: |
+    - \d{10}
+    - \+\d{1,3}\d{10}
+    - \d{3}[-.]?\d{3}[-.]?\d{4}
+
+- regex: date
+  examples: |
+    - \d{4}-\d{2}-\d{2}
+    - \d{2}/\d{2}/\d{4}
+
+- regex: time
+  examples: |
+    - ([0-1]?[0-9]|2[0-3]):[0-5][0-9]
+    - ([0-1]?[0-9]|2[0-3])[:.][0-5][0-9]
+
+- lookup: room_name
+  examples: |
+    - Conference Room A
+    - Conference Room B
+    - Meeting Room 1
+    - Meeting Room 2
+    - Board Room
+    - Training Room
+    - Team Space 1
+    - Team Space 2
+
+- synonym: tomorrow
+  examples: |
+    - next day
+    - the next day
+    - tmr
+    - tomm
+
+- synonym: afternoon
+  examples: |
+    - post lunch
+    - after lunch
+    - pm
+    - post meridiem
