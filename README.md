@@ -52,4 +52,5 @@ EnterpriseWorkspaceAI/
 ├── endpoints.yml         # Endpoint configuration
 # 💬 Sample Conversations
 ## 1. Basic Room Booking 🎯
-![image](https://github.com/user-attachments/assets/ad2bcd46-758a-4db5-a6fb-842824c282c0)
+![Alt text](https://github.com/user-attachments/assets/9211b0b8-30c3-4430-9ae6-e6c96416dc40)
+
