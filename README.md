@@ -34,6 +34,8 @@ A professional, intelligent chatbot for enterprise workspace management, powered
   - Error handling and recovery
   - Booking confirmation system
 
+
+
 ## 🏗️ Architecture
 
 ```plaintext
@@ -50,7 +52,7 @@ EnterpriseWorkspaceAI/
 ├── credentials.yml        # Channel credentials
 ├── domain.yml            # Bot domain
 ├── endpoints.yml         # Endpoint configuration
+```
 # 💬 Sample Conversations
 ## 1. Basic Room Booking 🎯
 ![Alt text](https://github.com/user-attachments/assets/9211b0b8-30c3-4430-9ae6-e6c96416dc40)
-
